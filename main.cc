@@ -20,18 +20,18 @@ class Database
 private:
     static PGconn *connect()
     {
-        const char *databaseUrl = std::getenv("SANJAYMART_DATABASE_URL");
+        const char *databaseUrl = std::getenv("DATABASE_URL");
         if (databaseUrl && *databaseUrl)
         {
             return PQconnectdb(databaseUrl);
         }
 
-        const char *dbPassword = std::getenv("SANJAYMART_DB_PASSWORD");
+        const char *dbPassword = std::getenv("DB_PASSWORD");
 
         if (!dbPassword)
         {
             std::cerr
-                << "SANJAYMART_DB_PASSWORD is not set."
+                << "DB_PASSWORD is not set."
                 << std::endl;
 
             return nullptr;
@@ -40,7 +40,7 @@ private:
         std::string connectionString =
             "host=127.0.0.1 "
             "port=5432 "
-            "dbname=sanjaymart "
+            "dbname=velurajmart "
             "user=postgres "
             "password=" + std::string(dbPassword);
 
@@ -130,14 +130,14 @@ private:
         const std::string &otp,
         std::string &errorMessage)
     {
-        const char *senderEnv = std::getenv("SANJAYMART_EMAIL");
-        const char *apiKeyEnv = std::getenv("SANJAYMART_BREVO_API_KEY");
+        const char *senderEnv = std::getenv("EMAIL_SENDER");
+        const char *apiKeyEnv = std::getenv("BREVO_API_KEY");
 
         if (!senderEnv || !*senderEnv || !apiKeyEnv || !*apiKeyEnv)
         {
             errorMessage =
-                "Email service is not configured. Set SANJAYMART_EMAIL "
-                "and SANJAYMART_BREVO_API_KEY in Render.";
+                "Email service is not configured. Set EMAIL_SENDER "
+                "and BREVO_API_KEY in Render.";
             return false;
         }
 
@@ -2867,7 +2867,7 @@ int main()
         [](const HttpRequestPtr &req,
            std::function<void(const HttpResponsePtr &)> &&callback)
         {
-            const char *apiKey = std::getenv("SANJAYMART_GEMINI_API_KEY");
+            const char *apiKey = std::getenv("GEMINI_API_KEY");
             if (!apiKey || !*apiKey)
             {
                 callback(jsonError(
@@ -3034,11 +3034,11 @@ int main()
     // ---------------------------------------------------------
     // SERVER
     // ---------------------------------------------------------
-    if (!std::getenv("SANJAYMART_DATABASE_URL") &&
-        !std::getenv("SANJAYMART_DB_PASSWORD"))
+    if (!std::getenv("DATABASE_URL") &&
+        !std::getenv("DB_PASSWORD"))
     {
-        std::cerr << "Warning: Set SANJAYMART_DATABASE_URL for cloud PostgreSQL "
-                  << "or SANJAYMART_DB_PASSWORD for local PostgreSQL."
+        std::cerr << "Warning: Set DATABASE_URL for cloud PostgreSQL "
+                  << "or DB_PASSWORD for local PostgreSQL."
                   << std::endl;
     }
 

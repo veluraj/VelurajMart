@@ -14,8 +14,10 @@ RUN apt-get update \
         uuid-dev \
         zlib1g-dev \
         libsqlite3-dev \
-        default-libmysqlclient-dev \
+        libmariadb-dev \
+        libmariadb-dev-compat \
         libhiredis-dev \
+        libbrotli-dev \
         libssl-dev \
         libcurl4-openssl-dev \
         libpq-dev \

@@ -1,4 +1,4 @@
-# Build VelurajMart with Ubuntu's packaged Drogon, JsonCpp, libcurl, and PostgreSQL libraries.
+# Build VelurajMart with Ubuntu's packaged Drogon, JsonCpp, UUID, libcurl, and PostgreSQL libraries.
 FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -11,6 +11,7 @@ RUN apt-get update \
         ca-certificates \
         libdrogon-dev \
         libjsoncpp-dev \
+        uuid-dev \
         libcurl4-openssl-dev \
         libpq-dev \
     && rm -rf /var/lib/apt/lists/*

@@ -371,6 +371,241 @@ input:focus,select:focus,textarea:focus { box-shadow:0 0 0 2px rgba(80,113,78,.1
   *,*:before,*:after { scroll-behavior:auto!important; transition-duration:.01ms!important; }
 }
 
+
+
+/* High-contrast readability pass: prioritize clear text on every screen */
+:root {
+  --ink:#18251e;
+  --forest:#21452f;
+  --forest2:#2b5b3d;
+  --lime:#e2f18c;
+  --lime2:#d4e66d;
+  --paper:#f5f6f2;
+  --surface:#ffffff;
+  --surface2:#edf1e9;
+  --muted:#4d5b51;
+  --line:#c8d2c8;
+  --danger:#a52222;
+  --success:#176337;
+  --shadow:0 8px 24px rgba(20,35,25,.08);
+  --soft:0 3px 12px rgba(20,35,25,.055);
+}
+html { color-scheme:light; }
+body { color:#18251e; background:#f5f6f2; }
+p, li, dd, dt, figcaption { color:inherit; }
+.small,.image-help,.password-hint,.catalog-heading p,.section-heading p,
+.seller-welcome p,.seller-orders-banner p,.reviews-banner p,
+.admin-control-banner p,.summary-copy,.summary-footnote {
+  color:#4d5b51;
+}
+label { color:#26372c; }
+input,select,textarea { color:#18251e; background:#fff; border-color:#aebcaf; }
+input::placeholder,textarea::placeholder { color:#5a665d; opacity:1; }
+select option { color:#18251e; background:#fff; }
+input[disabled],select[disabled],textarea[disabled],button:disabled {
+  opacity:1;
+  color:#59635c;
+  background:#e6e9e4;
+  border-color:#c6cec6;
+}
+a { color:#174e83; text-decoration:underline; text-underline-offset:2px; }
+a:hover { color:#0c355d; }
+:focus-visible { outline-color:#155eaa; }
+.message { color:#183e28; background:#edf8df; border-color:#a5bd91; border-left-color:#25623a; }
+.message:before { color:#16251b; background:#d6e77a; }
+.badge { color:#24382a; background:#edf3de; border-color:#becda5; }
+footer { background:#202d26; color:#ffffff; }
+footer * { color:#ffffff; }
+
+/* Navigation: strong white labels and a clearly readable active guest action */
+header { background:#20382b; color:#fff; }
+header h2,header h2:before { color:#fff; }
+header h2:before { background:#dce985; color:#17261b; }
+nav button { color:#fff; background:#20382b; border-color:#a2b4a7; }
+nav button:hover { color:#17261b; background:#edf4d5; border-color:#edf4d5; }
+#guestNav button:last-child { color:#17261b; background:#e2ef8c; border-color:#e2ef8c; }
+#guestNav button:last-child:hover { color:#17261b; background:#d1e46b; }
+nav .badge { color:#17261b; background:#e2ef8c; }
+
+/* Account screens: dark readable copy in forms; white copy on each colored panel */
+.auth-box,.auth-fields { background:#fff; color:#18251e; }
+.auth-box h2,.auth-box h3,.auth-fields h2,.auth-fields h3 { color:#18251e; }
+.auth-fields p,.auth-fields .small,.auth-fields label { color:#34463a; }
+.auth-visual,.auth-visual-registerSection,.auth-visual-forgotSection,
+.auth-visual-resetOtpSection,.auth-visual-resetPasswordSection,.auth-visual-otpSection {
+  color:#fff;
+}
+.auth-visual .auth-stamp,.auth-visual .auth-footnote,
+.auth-visual-copy p,.auth-visual-copy h3,.auth-visual .auth-kicker,
+.auth-visual .auth-monogram,.auth-visual .auth-monogram span { color:#fff; }
+.auth-visual .auth-kicker { color:#f1f5bd; }
+.auth-visual-copy p,.auth-footnote,.auth-stamp { opacity:1; }
+.auth-box .password-toggle,.auth-box .show-password {
+  color:#24372a; background:#e8eee3; border-color:#9aab98;
+}
+.password-hint { color:#3e5043; }
+.password-hint.hint-error { color:#a52222; }
+.password-hint.hint-valid { color:#176337; }
+
+/* Buyer catalog: dark brown-green text over light warm retail surfaces */
+#productsSection .hero { background:#f0e2ce; border-color:#bda486; border-left-color:#87451f; }
+#productsSection .hero h1,#productsSection .hero p { color:#34271d; }
+#productsSection .hero p { color:#49392d; }
+#productsSection .hero .badge { color:#60351c; background:#fff9f0; border-color:#c9b298; }
+#productsSection .hero-img:after { color:#60351c; }
+.catalog-heading h2 { color:#18251e; }
+.catalog-heading p { color:#4d5b51; }
+#productsSection .toolbar { background:#fff; border-color:#c9d1c8; }
+#productsSection .toolbar input { color:#18251e; }
+#productsSection .chip { color:#303f34; background:#fff; border-color:#9ea99e; }
+#productsSection .chip:hover { color:#18251e; background:#f2f3e9; border-color:#667d64; }
+#productsSection .chip.active { color:#fff; background:#75401f; border-color:#75401f; }
+#productsSection .product { color:#18251e; background:#fff; border-color:#c9cfc6; }
+#productsSection .product h3,#productsSection .product p,#productsSection .product .seller,
+#productsSection .product .stock,#productsSection .product .small { color:#27352b; }
+#productsSection .product .price { color:#773914; }
+#productsSection .product .badge { color:#63361e; background:#f7e9d9; border-color:#d4b89e; }
+#productsSection .product button { color:#fff; background:#7d3f20; border-color:#7d3f20; }
+#productsSection .product button:hover { color:#fff; background:#612c14; border-color:#612c14; }
+#productsSection .product .password-toggle { color:#3c3026; background:#efe5d8; border-color:#c5b4a0; }
+
+/* Cart and checkout: readable slate text with clear contrast in the summary panel */
+#cartSection,#cartSection h2,#cartSection h3,#cartSection p { color:#203541; }
+.cart-page-heading { background:#e5edf2; border-left-color:#41677d; }
+.cart-page .section-heading h2 { color:#203e50; }
+.cart-page .section-heading p { color:#435a67; }
+.cart-lines-panel { color:#18251e; background:#fff; border-color:#b8cbd4; }
+.cart-lines-panel h3,.cart-lines-panel p,.cart-lines-panel .eyebrow { color:#263e4a; }
+.cart-lines-panel .panel-index { color:#203d4c; background:#dfeaf0; }
+.cart-summary { color:#fff; background:#253f4e; }
+.cart-summary h3,.cart-summary p,.cart-summary .summary-copy,.cart-summary .summary-note,
+.cart-summary .summary-footnote,.cart-summary .eyebrow,.cart-summary .summary-total-label { color:#fff; }
+.cart-summary #cartTotal { color:#ffe0a8; }
+.cart-summary .summary-divider { background:#8ea3ad; }
+.cart-summary .checkout-button { color:#1e3440; background:#ffdfa8; border-color:#ffdfa8; }
+.cart-summary .checkout-button:hover { color:#182b34; background:#ffd184; border-color:#ffd184; }
+#cartList th { color:#fff; background:#36586b; }
+#cartList td,#cartList td * { color:#202e35; }
+#cartList td button { color:#fff; background:#36586b; border-color:#36586b; }
+#cartList td button:hover { color:#fff; background:#244251; }
+#cartList td button:last-child { background:#8c302b; border-color:#8c302b; color:#fff; }
+
+/* Buyer order history: deep green headings and crisp table rows */
+#buyerOrdersSection { color:#203d35; }
+.orders-page-heading { background:#e2eee8; border-left-color:#34685b; }
+.orders-page-heading h2 { color:#1f433a; }
+.orders-page-heading p { color:#3f5d53; }
+.orders-monogram { color:#fff; background:#34685b; }
+.order-history-panel { color:#18251e; background:#fff; border-color:#b9cec4; border-top-color:#34685b; }
+.order-history-panel h3,.order-history-panel p { color:#22372e; }
+.order-history-panel .panel-index { color:#244d42; background:#dfede6; }
+#buyerOrders th { color:#fff; background:#2e6355; }
+#buyerOrders td,#buyerOrders td * { color:#1e3028; }
+#buyerOrders tr:hover td { background:#eaf4ee; }
+
+/* Seller inventory: dark evergreen text and accessible form controls */
+.seller-welcome { background:#e6ecdF; border-color:#bac9af; border-left-color:#496a36; }
+.seller-welcome h2,.seller-welcome p { color:#253b28; }
+.seller-seal { color:#263b2d; }
+.seller-seal span,.seller-seal small { color:#263b2d; }
+.seller-editor-card { color:#18251e; background:#fff; border-color:#bcc9b6; border-top-color:#496a36; }
+.seller-editor-card h2,.seller-editor-card h3,.seller-editor-card p,
+.seller-editor-card label,.seller-editor-card .small { color:#26392a; }
+.seller-editor-card input,.seller-editor-card textarea,.seller-editor-card select { color:#17251b; background:#fff; border-color:#9dac98; }
+.seller-editor-card input::placeholder,.seller-editor-card textarea::placeholder { color:#5d675b; }
+.image-uploader { background:#f1f4ea; border-color:#a9b89f; }
+.image-help { color:#3f4e3c; }
+.seller-editor-card #productSaveButton { color:#fff; background:#3e612f; border-color:#3e612f; }
+.seller-editor-card #productSaveButton:hover { color:#fff; background:#2d4c21; }
+.seller-editor-card #cancelEditButton { color:#283a29; background:#e6eddf; border-color:#9fb095; }
+.seller-inventory-heading h2,.seller-inventory-heading p { color:#273a2c; }
+.inventory-tag { color:#314a29; background:#e4ecd8; border-color:#b8c9a7; }
+.seller-inventory-panel .seller-product-card { color:#18251e; background:#fff; border-color:#c0cdb9; }
+.seller-inventory-panel .seller-product-card h3,.seller-inventory-panel .seller-product-card p,
+.seller-inventory-panel .seller-product-card .small { color:#27372a; }
+.seller-inventory-panel .seller-product-card .price { color:#31591f; }
+.seller-inventory-panel .seller-product-card button { color:#fff; background:#3d612f; border-color:#3d612f; }
+.seller-inventory-panel .seller-product-card button:hover { color:#fff; background:#2b4b20; }
+.seller-inventory-panel .seller-product-card .danger-button { color:#fff; background:#a12e28; border-color:#a12e28; }
+
+/* Seller fulfilment: strong blue title and white-on-blue table headings */
+.seller-orders-banner { background:#e0eaf2; border-color:#b0c5d4; border-left-color:#355f7b; }
+.seller-orders-banner h2 { color:#203e53; }
+.seller-orders-banner p,.seller-orders-banner .eyebrow { color:#2f536b; }
+.fulfilment-mark { color:#244a63; background:#f8fbfd; border-color:#9eb8c8; }
+.seller-order-board { color:#18251e; background:#fff; border-color:#b9cbd6; }
+.seller-order-board h3,.seller-order-board p,.seller-order-board .eyebrow { color:#223f52; }
+.seller-order-board .panel-index { color:#23465d; background:#deebf3; }
+#sellerOrders th { color:#fff; background:#315c76; }
+#sellerOrders td,#sellerOrders td * { color:#1f2f38; }
+#sellerOrders td button { color:#fff; background:#315c76; border-color:#315c76; }
+#sellerOrders td button:hover { color:#fff; background:#23475e; }
+#sellerOrders td select { color:#18251e; background:#fff; border-color:#8ea6b4; }
+
+/* Reviews: warm surfaces with darker brown text and a legible action button */
+.reviews-banner { color:#3e2b22; background:#f1e5dc; border-color:#d9bfae; border-left-color:#864b31; }
+.reviews-banner h2 { color:#4a2f22; }
+.reviews-banner p { color:#5c4234; }
+.reviews-banner .eyebrow { color:#713a22; }
+.review-star { color:#fff; background:#864b31; }
+.reviews-workspace { color:#18251e; background:#fff; border-color:#d2bdae; }
+.reviews-workspace h2,.reviews-workspace h3,.reviews-workspace p,
+.reviews-workspace label,.reviews-workspace .small { color:#3a2d26; }
+.reviews-workspace>.password-toggle { color:#4b2d20; background:#f2e3d8; border-color:#d0b19e; }
+.reviews-workspace #reviewsList>.card { color:#2c2926; background:#fbf5ef; border-color:#d7c2b3; }
+.reviews-workspace #reviewsList>.card strong,
+.reviews-workspace #reviewsList>.card span,
+.reviews-workspace #reviewsList>.card p { color:#34261f; }
+#reviewForm { background:#f7eee7; border-color:#d5bbab; }
+#reviewForm input,#reviewForm select,#reviewForm textarea { color:#18251e; background:#fff; border-color:#b79d8d; }
+#reviewForm button { color:#fff; background:#784127; border-color:#784127; }
+#reviewForm button:hover { color:#fff; background:#5e301b; }
+
+/* Admin operations: readable white text on dark headers; dark content on white tables */
+.admin-control-banner { background:#273640; border-left-color:#90a9b8; }
+.admin-control-banner h2 { color:#fff; }
+.admin-control-banner p { color:#edf2f4; }
+.admin-control-banner .eyebrow { color:#e8f0a8; }
+.admin-emblem { color:#edf2b6; background:#364a56; border-color:#9aafb9; }
+.admin-emblem span,.admin-emblem small { color:#edf2b6; }
+.admin-module { color:#18251e; background:#fff; border-color:#c1ccd1; }
+.admin-module-head h3,.admin-module-head .eyebrow,.admin-module p { color:#24343c; }
+.module-number { color:#263b45; background:#e5edf1; }
+.admin-users-module .module-number { color:#294c2e; background:#e5efe0; }
+.admin-orders-module .module-number { color:#234b64; background:#e0edf4; }
+.admin-products-module .module-number { color:#5f4818; background:#f5edd9; }
+.admin-module table th { color:#fff; background:#354b57; }
+.admin-users-module table th { background:#355b3b; }
+.admin-orders-module table th { background:#315b75; }
+.admin-products-module table th { background:#72591f; }
+.admin-module table td,.admin-module table td * { color:#202d33; }
+.admin-module table tr:hover td { background:#edf3f5; }
+#adminProducts button { color:#fff; background:#9a2929; border-color:#9a2929; }
+#adminProducts button:hover { color:#fff; background:#761d1d; }
+
+/* Tables, form errors, hints and dialogs: readable by default */
+table { color:#18251e; background:#fff; }
+th { color:#fff; }
+td { color:#202d25; }
+td a { color:#124f83; }
+input.is-invalid { color:#771a1a; border-color:#a52222; }
+.password-hint.hint-error { color:#a52222; }
+.password-hint.hint-valid { color:#176337; }
+.warning-dialog { color:#18251e; background:#fff; }
+.warning-dialog h2 { color:#18251e; }
+.warning-dialog p { color:#39483e; }
+.warning-symbol { color:#713a00; background:#ffedc6; }
+.warning-dialog button { color:#fff; background:#21452f; border-color:#21452f; }
+
+/* Keep all dashboard copy readable on narrow screens too */
+@media(max-width:760px) {
+  .auth-visual-copy h3,.auth-visual-copy p,.auth-footnote,.auth-stamp { color:#fff; }
+  .cart-summary h3,.cart-summary p,.cart-summary .summary-copy,
+  .cart-summary .summary-note,.cart-summary .summary-footnote,
+  .cart-summary .eyebrow,.cart-summary .summary-total-label { color:#fff; }
+  .admin-control-banner h2,.admin-control-banner p,.admin-control-banner .eyebrow { color:#fff; }
+}
+
 </style>
 
 

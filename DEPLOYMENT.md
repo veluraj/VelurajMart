@@ -14,7 +14,7 @@ VelurajMart is a C++17 Drogon application with a PostgreSQL database and a same-
 2. In https://dashboard.render.com/, create **New → Web Service** and select this repository.
 3. Select **Docker** as the runtime and the free instance type if offered.
 4. In the Render service, open **Environment** and add `DATABASE_URL` with the Neon PostgreSQL connection string. Ensure the URL includes `sslmode=require`. Do not commit the connection string to GitHub.
-5. For email OTP, add `EMAIL_SENDER` (your verified sender email) and `BREVO_API_KEY` (your Brevo API key). For the AI helper, add `GEMINI_API_KEY`. Add SMS variables (`TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, and `TWILIO_FROM_NUMBER`) only if SMS alerts are enabled.
+5. For email OTP, add `EMAIL_SENDER` (your verified sender email) and `BREVO_API_KEY` (your Brevo API key). Add SMS variables (`TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, and `TWILIO_FROM_NUMBER`) only if SMS alerts are enabled.
 6. Save changes, deploy, and inspect the build and runtime logs. The database warning will remain until `DATABASE_URL` is set to a valid connection string.
 
 The server reads Render's `PORT` environment variable and listens on `0.0.0.0`. The frontend is served by the same Drogon service, so use the Render service URL rather than opening the HTML file directly.

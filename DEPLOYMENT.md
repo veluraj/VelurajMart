@@ -5,7 +5,7 @@ VelurajMart is a C++17 Drogon application with a PostgreSQL database and a same-
 ## 1. Create a Neon PostgreSQL database
 
 1. Create a project at https://console.neon.tech/.
-2. Run the SQL schema required by `main.cc` in the Neon SQL Editor.
+2. In the Neon SQL Editor, run `CREATE EXTENSION IF NOT EXISTS pgcrypto;` in the same database used by the app, then run the SQL schema required by `main.cc`. The app also attempts to enable this extension at startup.
 3. Copy the PostgreSQL connection string. Keep it private.
 
 ## 2. Deploy the backend on Render

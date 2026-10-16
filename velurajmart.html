@@ -1394,6 +1394,13 @@ async function register() {
 
         if (data.status === "error") {
             showMessage(data.message);
+
+            // Registration may be saved even when the email provider is not configured.
+            // Keep the user on the OTP screen so they can resend after configuration is fixed.
+            if (String(data.message || "").includes("Registration is saved but is not verified")) {
+                pendingVerificationEmail = email;
+                showOtp(email);
+            }
             return;
         }
 

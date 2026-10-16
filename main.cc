@@ -382,6 +382,56 @@ private:
 
 public:
     // =========================================================
+    // DATABASE EXTENSIONS
+    // =========================================================
+    static bool initializePgcrypto()
+    {
+        PGconn *conn = connect();
+
+        if (!connectionOk(conn))
+        {
+            std::string error = conn ? PQerrorMessage(conn) : "Database connection failed";
+            std::cerr << "ERROR: PostgreSQL connection failed while checking pgcrypto: "
+                      << error << std::endl;
+            if (conn) PQfinish(conn);
+            return false;
+        }
+
+        PGresult *extension = PQexec(
+            conn,
+            "CREATE EXTENSION IF NOT EXISTS pgcrypto"
+        );
+
+        if (!extension || PQresultStatus(extension) != PGRES_COMMAND_OK)
+        {
+            std::string error = PQerrorMessage(conn);
+            std::cerr
+                << "ERROR: Could not enable PostgreSQL pgcrypto extension. "
+                << "Run CREATE EXTENSION IF NOT EXISTS pgcrypto; in the Neon SQL Editor "
+                << "using a database-owner role. Details: " << error
+                << std::endl;
+            if (extension) PQclear(extension);
+            PQfinish(conn);
+            return false;
+        }
+        PQclear(extension);
+
+        PGresult *check = PQexec(conn, "SELECT gen_salt('bf')");
+        const bool ok = check && PQresultStatus(check) == PGRES_TUPLES_OK;
+
+        if (!ok)
+        {
+            std::string error = PQerrorMessage(conn);
+            std::cerr << "ERROR: pgcrypto was enabled but gen_salt() is still unavailable: "
+                      << error << std::endl;
+        }
+
+        if (check) PQclear(check);
+        PQfinish(conn);
+        return ok;
+    }
+
+    // =========================================================
     // DATABASE TEST
     // =========================================================
     static std::string testConnection()
@@ -2126,6 +2176,15 @@ int main()
 {
     // Initialize libcurl once for Gmail/Twilio requests.
     curl_global_init(CURL_GLOBAL_DEFAULT);
+
+    // Password hashing and OTP hashing use gen_salt()/crypt() from pgcrypto.
+    // Ensure the extension exists before accepting registration/reset requests.
+    const char *databaseUrl = std::getenv("DATABASE_URL");
+    const char *databasePassword = std::getenv("DB_PASSWORD");
+    if ((databaseUrl && *databaseUrl) || (databasePassword && *databasePassword))
+    {
+        Database::initializePgcrypto();
+    }
 
     // Sessions are required for login, buyer, seller and admin routes.
     app().enableSession(3600);
